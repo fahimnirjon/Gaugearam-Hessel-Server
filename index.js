@@ -48,6 +48,7 @@ async function run() {
         res.send(result)
     })
 
+    // cart api
     app.get('/carts', async(req, res)=>{
       const email = req.query.email;
       const query = {email:email}
