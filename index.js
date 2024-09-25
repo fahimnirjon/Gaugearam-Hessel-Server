@@ -35,6 +35,11 @@ async function run() {
     const cartCollection = client.db('food').collection('carts');
 
     // user api
+    app.post('/users', async(req, res)=>{
+      const user = req.body;
+      const result = await userCollection.insertOne(user);
+      res.send(result) 
+    })
 
     // menu api
     app.get('/menu', async(req, res)=>{
