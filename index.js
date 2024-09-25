@@ -34,16 +34,21 @@ async function run() {
     const reviewCollection = client.db('food').collection('reviews');
     const cartCollection = client.db('food').collection('carts');
 
+    // user api
+
+    // menu api
     app.get('/menu', async(req, res)=>{
         const result = await menuCollection.find().toArray();
         res.send(result);
     });
 
+    // review
     app.get('/reviews', async(req, res)=>{
         const result = await reviewCollection.find().toArray();
         res.send(result)
     })
 
+    // cart
     app.get('/carts', async(req, res)=>{
       const email = req.query.email;
       const query = {email:email}
