@@ -35,7 +35,7 @@ async function run() {
     const cartCollection = client.db('food').collection('carts');
 
     // user api
-    app.get('/allusers', async(req, res)=>{
+    app.get('/users', async(req, res)=>{
       const result = await userCollection.find().toArray();
       res.send(result)
     })
