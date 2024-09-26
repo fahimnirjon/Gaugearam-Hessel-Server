@@ -35,8 +35,18 @@ async function run() {
     const cartCollection = client.db('food').collection('carts');
 
     // user api
+    app.get('/allusers', async(req, res)=>{
+      const result = await userCollection.find().toArray();
+      res.send(result)
+    })
     app.post('/users', async(req, res)=>{
       const user = req.body;
+      // check if the email user exists
+      const query = {email: user.email};
+      const existingUser = await userCollection.findOne(query);
+      if(existingUser){
+        return res.send({message: 'email not valid', existingUser})
+      }
       const result = await userCollection.insertOne(user);
       res.send(result) 
     })
